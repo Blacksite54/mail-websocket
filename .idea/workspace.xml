@@ -4,19 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d85a1e7-143d-48e4-9736-6ab9b2640e77" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/DEV.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/DEV/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/DEV/asgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/DEV/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/DEV/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/DEV/wsgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+    <list default="true" id="5d85a1e7-143d-48e4-9736-6ab9b2640e77" name="Changes" comment="feat: all">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,11 +96,24 @@
       <option name="presentableId" value="Default" />
       <updated>1719845629854</updated>
       <workItem from="1719845643228" duration="550000" />
-      <workItem from="1719846202512" duration="9271000" />
+      <workItem from="1719846202512" duration="10320000" />
     </task>
+    <task id="LOCAL-00001" summary="feat: all">
+      <option name="closed" value="true" />
+      <created>1719856103771</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1719856103771</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: all" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: all" />
   </component>
 </project>
