@@ -32,5 +32,5 @@ class UserViewSet(
 
 
 def import_messages(request):
-    return render(request, 'index.html', {})
+    return render(request, 'users/index.html', {})
 
