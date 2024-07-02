@@ -5,7 +5,7 @@ from api.users.models import User
 from api.users.serializers import UserSerializer
 
 
-class MessageViewSet(
+class UserViewSet(
     mixins.RetrieveModelMixin,
     mixins.CreateModelMixin,
     viewsets.GenericViewSet,

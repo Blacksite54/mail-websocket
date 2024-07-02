@@ -23,5 +23,10 @@ urlpatterns = [
         "message/",
         include(("api.messages.urls", "messages"), namespace="messages"),
         name="messages"
+    ),
+    path(
+        "user/",
+        include(("api.users.urls", "user"), namespace="user"),
+        name="user"
     )
 ]
