@@ -6,9 +6,11 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'DEV.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'api.DEV.settings')
+    os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
     try:
         from django.core.management import execute_from_command_line
+        print(os.environ.get("PYTHONPATH", ""))
     except ImportError as exc:
         raise ImportError(
             "Couldn't import Django. Are you sure it's installed and "

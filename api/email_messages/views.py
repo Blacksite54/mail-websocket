@@ -4,9 +4,9 @@ from rest_framework import viewsets, mixins, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from api.messages.filters import MessageFilter
-from api.messages.models import Message
-from api.messages.serializers import MessageSerializer, MessageListSerializer
+from api.email_messages.filters import MessageFilter
+from api.email_messages.models import Message
+from api.email_messages.serializers import MessageSerializer, MessageListSerializer
 
 
 class MessageViewSet(

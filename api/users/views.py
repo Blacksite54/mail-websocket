@@ -1,3 +1,5 @@
+from django.shortcuts import render
+
 from rest_framework import viewsets, mixins, status
 from rest_framework.response import Response
 
@@ -27,3 +29,8 @@ class UserViewSet(
         serializer.save()
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+def import_messages(request):
+    return render(request, 'index.html', {})
+

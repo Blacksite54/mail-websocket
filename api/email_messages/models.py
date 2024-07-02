@@ -10,4 +10,4 @@ class Message(models.Model):
     date_receipt = models.DateField()
     description = models.CharField(blank=True, null=True)
     attachments = models.FileField(upload_to='attachments/')
-    user = models.ForeignKey(User, related_name="messages", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name="email_messages", on_delete=models.CASCADE)

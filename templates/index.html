@@ -16,13 +16,13 @@
             <option value="mail.ru">Mail.ru</option>
         </select>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" placeholder="Введите email">
+        <label for="username">Логин:</label>
+        <input type="text" id="username" placeholder="Введите логин">
 
         <label for="password">Пароль:</label>
         <input type="password" id="password" placeholder="Введите пароль">
 
-        <button id="import-btn">Импортировать</button>
+        <button id="start-search-btn">Начать поиск</button>
     </div>
 
     <div class="progress-bar">
@@ -34,5 +34,39 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'js/index.js' %}"></script>
+    <script>
+        $('#start-search-btn').click(function() {
+            var emailService = $('#email-service').val();
+            var username = $('#username').val();
+            var password = $('#password').val();
+
+            // Подключение к WebSocket-каналу
+            var socket = new WebSocket('ws://' + window.location.host + '/ws/import/');
+
+            socket.onopen = function() {
+                console.log('WebSocket connection established');
+
+                // Отправка данных на сервер
+                socket.send(JSON.stringify({
+                    'email_service': emailService,
+                    'username': username,
+                    'password': password
+                }));
+            };
+
+            socket.onmessage = function(event) {
+                var data = JSON.parse(event.data);
+                console.log('Received message:', data);
+
+                // Обновление прогресс-бара и сообщений
+                updateProgressBar(data.progress);
+                updateMessage(data.message);
+            };
+
+            socket.onclose = function() {
+                console.log('WebSocket connection closed');
+            };
+        });
+    </script>
 </body>
 </html>

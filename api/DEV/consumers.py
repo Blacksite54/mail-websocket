@@ -4,7 +4,7 @@ import asyncio
 
 from channels.generic.websocket import AsyncWebsocketConsumer
 
-from api.messages.models import Message
+from api.email_messages.models import Message
 
 
 class ImportConsumer(AsyncWebsocketConsumer):

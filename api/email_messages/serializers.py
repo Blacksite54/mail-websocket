@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from api.messages.models import Message
+from api.email_messages.models import Message
 
 
 class MessageSerializer(serializers.ModelSerializer[Message]):

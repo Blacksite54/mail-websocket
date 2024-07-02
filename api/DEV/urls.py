@@ -21,8 +21,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path(
         "message/",
-        include(("api.messages.urls", "messages"), namespace="messages"),
-        name="messages"
+        include(("api.email_messages.urls", "email_messages"), namespace="email_messages"),
+        name="email_messages"
     ),
     path(
         "user/",
