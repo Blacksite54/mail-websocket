@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список сообщений</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Список сообщений</h1>
+
+    <div class="progress-bar">
+        <div class="progress"></div>
+        <span class="progress-text">Чтение сообщений...</span>
+    </div>
+
+    <table id="email-table">
+        <thead>
+            <tr>
+                <th>Тема</th>
+                <th>От</th>
+                <th>Кому</th>
+                <th>Дата получения</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/email_list.js' %}"></script>
+</body>
+</html>

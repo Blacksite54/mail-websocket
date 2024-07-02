@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'channels'
     'api.messages'
+    'api.users'
 ]
 
 MIDDLEWARE = [
