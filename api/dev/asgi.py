@@ -16,12 +16,16 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 from django.core.asgi import get_asgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'api.dev.settings')
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 django.setup()
+
 from api.dev import routing
 
 application = ProtocolTypeRouter({
     "http": get_asgi_application(),
-    "websocket": URLRouter(
+    "websocket": AuthMiddlewareStack(
+        URLRouter(
         routing.websocket_urlpatterns
+        )
     ),
 })
