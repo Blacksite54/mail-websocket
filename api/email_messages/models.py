@@ -9,5 +9,5 @@ class Message(models.Model):
     date_dispatch = models.DateField()
     date_receipt = models.DateField()
     description = models.CharField(blank=True, null=True)
-    attachments = models.FileField(upload_to='attachments/')
+    attachments = models.FileField(upload_to='attachments/', null=True, blank=True)
     user = models.ForeignKey(User, related_name="email_messages", on_delete=models.CASCADE)

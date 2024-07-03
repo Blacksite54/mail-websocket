@@ -16,9 +16,13 @@ $(document).ready(function() {
     }
 
     socket.onopen = function() {
-        socket.send(JSON.stringify({
-            'action': 'get_emails'
-        }));
+        var data = {
+            emailService: $('#email-service').val(),
+            login: $('#username').val(),
+            password: $('#password').val()
+        };
+
+        socket.send(JSON.stringify(data));
     };
 
     socket.onmessage = function(e) {

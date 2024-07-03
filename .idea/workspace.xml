@@ -6,10 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="5d85a1e7-143d-48e4-9736-6ab9b2640e77" name="Changes" comment="feat:">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/dev/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/dev/asgi.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/dev/consumers.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/dev/consumers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/dev/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/dev/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/email_messages/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/email_messages/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/users/templates/users/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/api/users/templates/users/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/email_list.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/email_list.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +124,8 @@
       <workItem from="1719846202512" duration="10653000" />
       <workItem from="1719891273442" duration="14112000" />
       <workItem from="1719907861573" duration="12513000" />
-      <workItem from="1719930294778" duration="11451000" />
+      <workItem from="1719930294778" duration="11526000" />
+      <workItem from="1719980359995" duration="35662000" />
     </task>
     <task id="LOCAL-00001" summary="feat: all">
       <option name="closed" value="true" />
@@ -181,7 +183,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719924857454</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="feat:">
+      <option name="closed" value="true" />
+      <created>1719943351153</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1719943351153</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
