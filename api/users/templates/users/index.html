@@ -6,169 +6,175 @@
     <title>Импорт сообщений</title>
 </head>
 <body>
-    <h1>Импорт сообщений</h1>
+<h1>Импорт сообщений</h1>
 
-    <div class="import-form">
-        <label for="email-service">Почтовый сервис:</label>
-        <select id="email-service">
-            <option value="yandex.ru">Yandex</option>
-            <option value="gmail.com">Gmail</option>
-            <option value="mail.ru">Mail.ru</option>
-        </select>
+<div class="import-form">
+    <label for="email-service">Почтовый сервис:</label>
+    <select id="email-service" value="mail.ru">
+        <option value="yandex.ru">Yandex</option>
+        <option value="gmail.com">Gmail</option>
+        <option value="mail.ru">Mail.ru</option>
+    </select>
 
-        <label for="username">Логин:</label>
-        <input type="text" id="username" placeholder="Введите логин">
+    <label for="username">Логин:</label>
+    <input type="text" id="username" value="ivanov.darkbee@inbox.ru" placeholder="Введите логин">
 
-        <label for="password">Пароль:</label>
-        <input type="password" id="password" placeholder="Введите пароль">
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" value="m62KEXxqR5uR3Gm2ugpW" placeholder="Введите пароль">
 
-        <button id="start-search-btn">Начать поиск</button>
-    </div>
+    <button id="start-search-btn">Начать поиск</button>
+</div>
 
-    <div class="progress-bar">
-        <div class="progress"></div>
-        <span class="progress-text" id="remaining-messages"></span>
-    </div>
+<div class="progress-bar">
+    <div class="progress"></div>
+    <span class="progress-text" id="remaining-messages"></span>
+</div>
 
-    <table id="email-table">
-        <thead>
-            <tr>
-                <th>Тема</th>
-                <th>Сообщение</th>
-                <th>Дата получения</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+<table id="email-table">
+    <thead>
+    <tr>
+        <th>Тема</th>
+        <th>Сообщение</th>
+        <th>Дата получения</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $('#start-search-btn').click(function() {
-            var data = {
-                emailService: $('#email-service').val(),
-                login: $('#username').val(),
-                password: $('#password').val()
-            };
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    let total_messages = 0;
 
-            // Подключение к WebSocket-каналу
-            var socket = new WebSocket('ws://' + window.location.host + '/ws/import/');
+    $('#start-search-btn').click(function() {
+        const data = {
+            emailService: $('#email-service').val(),
+            login: $('#username').val(),
+            password: $('#password').val()
+        };
 
-            socket.onopen = function() {
-                socket.send(JSON.stringify(data));
-            };
+        // Подключение к WebSocket-каналу
+        const socket = new WebSocket('ws://' + window.location.host + '/ws/import/');
 
-            socket.onmessage = function(event) {
-                var data = JSON.parse(event.data);
-                const total = +(data.total_messages);
-                var remaining = +(data.remaining_messages);
-                if (data.remaining_messages) {
-                    updateProgressBar(remaining, total);
-                }
-                else if (data.emails) {
-                    data.emails.forEach(function(email) {
-                        addEmailToTable(email);
-                    });
-                }
-            };
+        socket.onopen = function() {
+            socket.send(JSON.stringify(data));
+        };
 
-            function updateProgressBar(remaining, total) {
-                var progress = Math.round(((+total) - (+remaining)) / (+total) * 100) + "%";
-                $('.progress').css('width', progress);
-                $('#remaining-messages').text('Оставшиеся сообщения: ' + remaining);
+        socket.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+
+            if (data.total_messages) {
+                total_messages = data.total_messages;
             }
-
-            function addEmailToTable(email) {
-                var row = $('<tr>');
-                var subjectCell = $('<td>').css('max-width', '200px').css('overflow', 'hidden').css('text-overflow', 'ellipsis').attr('title', email.description);
-                subjectCell.text(email.subject.substring(0, 50) + '...');
-                row.append(subjectCell);
-                var descriptionCell = $('<td>').css('max-width', '200px').css('overflow', 'hidden').css('text-overflow', 'ellipsis').attr('title', email.description);
-                descriptionCell.text(email.description.substring(0, 50) + '...');
-                row.append(descriptionCell);
-                row.append($('<td>').text(email.received_at));
-
-              // Вставляем новую строку в начало таблицы
-                $('#email-table tbody').prepend(row);
+            const remaining = +(data.remaining_messages);
+            if (data.remaining_messages) {
+                updateProgressBar(remaining);
             }
-        });
-    </script>
+            else if (data.emails) {
+                data.emails.forEach(function(email) {
+                    addEmailToTable(email);
+                });
+            }
+        };
+
+        function updateProgressBar(remaining) {
+            const total = total_messages;
+            const progress = Math.round((parseInt(total) - parseInt(remaining)) / parseInt(total) * 100) + "%";
+            $('.progress').css('width', progress);
+            $('#remaining-messages').text('Оставшиеся сообщения: ' + remaining);
+        }
+
+        function addEmailToTable(email) {
+            const row = $('<tr>');
+            const subjectCell = $('<td>').css('max-width', '200px').css('overflow', 'hidden').css('text-overflow', 'ellipsis').attr('title', email.description);
+            subjectCell.text(email.subject.substring(0, 50) + '...');
+            row.append(subjectCell);
+            const descriptionCell = $('<td>').css('max-width', '200px').css('overflow', 'hidden').css('text-overflow', 'ellipsis').attr('title', email.description);
+            descriptionCell.text(email.description.substring(0, 50) + '...');
+            row.append(descriptionCell);
+            row.append($('<td>').text(email.received_at));
+
+            // Вставляем новую строку в начало таблицы
+            $('#email-table tbody').prepend(row);
+        }
+    });
+</script>
 </body>
 <style>
     body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
 
-h1 {
-    text-align: center;
-    margin-top: 20px;
-}
+    h1 {
+        text-align: center;
+        margin-top: 20px;
+    }
 
-.import-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 30px;
-}
+    .import-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px;
+    }
 
-.import-form label {
-    margin-top: 10px;
-}
+    .import-form label {
+        margin-top: 10px;
+    }
 
-.import-form input, .import-form select {
-    margin-top: 5px;
-    padding: 5px;
-    width: 200px;
-}
+    .import-form input, .import-form select {
+        margin-top: 5px;
+        padding: 5px;
+        width: 200px;
+    }
 
-.import-form button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
+    .import-form button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
 
-.progress-bar {
-  width: 80%;
-  height: 20px;
-  background-color: #f1f1f1;
-  margin: 20px auto;
-  position: relative;
-}
+    .progress-bar {
+        width: 80%;
+        height: 20px;
+        background-color: #f1f1f1;
+        margin: 20px auto;
+        position: relative;
+    }
 
-.progress {
-  background-color: green;
-  height: 100%;
-  width: 0;
-  transition: width 0.5s ease-in-out;
-}
+    .progress {
+        background-color: green;
+        height: 100%;
+        width: 0;
+        transition: width 0.5s ease-in-out;
+    }
 
-.progress-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-weight: bold;
-}
+    .progress-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-weight: bold;
+    }
 
-#email-table {
-    width: 80%;
-    margin: 20px auto;
-    border-collapse: collapse;
-}
+    #email-table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+    }
 
-#email-table th, #email-table td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
+    #email-table th, #email-table td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
 
-#email-table th {
-    background-color: #f2f2f2;
-}
+    #email-table th {
+        background-color: #f2f2f2;
+    }
 
 </style>
 </html>
